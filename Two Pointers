@@ -1,0 +1,32 @@
+Q- You are given three sorted array, you have to find maximum and minimum elemnts of those three arrays such that...
+
+
+#include<iostream>
+#include<vector>
+#include<limits>
+
+using namespace std;
+
+int min_diff(vector<int>a, vector<int>b, vector<int>c){
+    int n = min(a.size(), min(b.size(), c.size()));
+    int possible_ans = numeric_limits<int>::max();
+    
+    for(int i=0; i<n; ++i){
+        int maximum = max({a[i], b[i], c[i]});
+        int minimum = min({a[i], b[i], c[i]});
+        
+        possible_ans = min(possible_ans, maximum-minimum);
+    }
+    return possible_ans;
+}
+
+int main(){
+    vector<int> a = {1,4,5,8,10};
+    vector<int> b = {6,9,15};
+    vector<int> c = {2,3,6,6};
+    
+    int min_difference = min_diff (a,b,c);
+    cout<< "Minimum difference:" << min_difference << endl;
+    
+    return 0;
+}
